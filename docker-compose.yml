@@ -9,3 +9,8 @@ nexus:
   image: sonatype/nexus
   ports:
     - "8081:8081"
+gocd:
+  image: gocd/gocd-dev
+  ports:
+    - "8153:8153"
+    - "8154:8154"
