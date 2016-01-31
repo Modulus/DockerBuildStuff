@@ -1,5 +1,6 @@
 jenkins:
   build: jenkins/
+  container_name: jenkins
   ports:
     - "50000:50000"
     - "8080:8080"
@@ -7,10 +8,12 @@ jenkins:
     - /Users/Modulus/jenkins_builds/:/var/jenkins_home
 nexus:
   image: sonatype/nexus
+  container_name: nexus
   ports:
     - "8081:8081"
 gocd:
-  image: gocd/gocd-dev
+  build: gocd/
+  container_name: gocd
   ports:
     - "8153:8153"
     - "8154:8154"
