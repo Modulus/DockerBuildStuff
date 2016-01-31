@@ -17,3 +17,26 @@ gocd:
   ports:
     - "8153:8153"
     - "8154:8154"
+
+db:
+  container_name: postgres
+  image: postgres
+  environment:
+    - POSTGRES_USER=sonar
+    - POSTGRES_PASSWORD=sonar
+  volumes:
+    - /var/lib/postgresql
+  
+sonar:
+  image: sonarqube
+  container_name: sonar
+  ports:
+    - "9000:9000"
+    - "9092:9092"
+  links:
+    - db
+  environment:
+    - SONARQUBE_JDBC_URL=jdbc:postgresql://db:5432/sonar
+  volumes:
+    - /opt/sonarqube/extensions
+    - /opt/sonarqube/lib/bundled-plugins
